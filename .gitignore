@@ -1,0 +1,4 @@
+node_modules/
+.vscode/
+coverage/
+secret.key

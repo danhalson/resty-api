@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "16qz732444k6do0zlg",
+      "username": "Test2",
+      "email": "test@test.org",
+      "password": "TheTester"
+    },
+    {
+      "id": "16qz73nvk6dvdhif",
+      "username": "Test4",
+      "email": "test@test.org",
+      "password": "$2a$08$IPzIoudLj6X.uIQF1Hx3OuOIzLmIJhMyyAKkwPLqJik6Onh660pR6"
+    },
+    {
+      "id": "16qz731p6k6e15zqq",
+      "username": "Test5",
+      "email": "test@test.org",
+      "password": "$2a$08$P6Ue7N702uEiOo14BAGRIuvyHBE9P2yomgQe02loCWKbUmzpvVZRC"
+    }
+  ]
+}
