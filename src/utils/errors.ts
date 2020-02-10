@@ -1,4 +1,4 @@
-import {JsonError} from "../types/main";
+import {JsonError} from "../types";
 
 /**
  * Wraps an error for use as json output

@@ -1,4 +1,4 @@
-import Koa from 'koa';
+import Koa, {Context} from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
@@ -6,6 +6,8 @@ import authRoutes from './routes/authRoutes';
 import {userRoutesPublic, userRoutesProtected} from './routes/userRoutes';
 import {secret} from './utils/security';
 import jwt from 'koa-jwt';
+import {LowdbSync} from 'lowdb';
+import {Schema} from './types';
 
 const coreRoutes = new Router();
 
@@ -17,11 +19,11 @@ const coreRoutes = new Router();
  *
  * @returns {{status: 'ok'}}
  */
-coreRoutes.get('/healthcheck', async (ctx: any) => {
+coreRoutes.get('/healthcheck', async (ctx: Context) => {
     ctx.body = {status: 'ok'};
 });
 
-const runApp = (db: any): Koa => {
+const runApp = (db: LowdbSync<Schema>): Koa => {
     const app = new Koa();
 
     // Add the db instance to the state

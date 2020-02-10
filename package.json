@@ -7,8 +7,9 @@
     "start": "ts-node ./src",
     "debug": "tsnd --transpileOnly --inspect -- ./src",
     "debug:watch": "tsnd --respawn --inspect -- ./src",
-    "test": "jest --coverage --runInBand --detectOpenHandles ./src/tests",
-    "test:watch": "jest --watch --runInBand --detectOpenHandles ./src/tests"
+    "test": "jest --coverage --runInBand --detectOpenHandles ./test",
+    "test:watch": "jest --watch --runInBand --detectOpenHandles ./test",
+    "lint": "eslint ./src --ext .ts"
   },
   "author": "Dan Halson",
   "license": "",
@@ -30,10 +31,12 @@
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.1.0",
+    "koa-jwt": "^3.6.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^8.0.7",
     "lowdb": "^1.0.0",
     "ramda": "^0.27.0",
+    "supertest": "^4.0.2",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5",
     "uniqid": "^5.2.0"
@@ -44,19 +47,33 @@
     "@babel/preset-typescript": "^7.8.3",
     "@types/node": "^13.1.8",
     "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
     "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-json": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
     "husky": "^4.2.1",
     "jest-cli": "^25.1.0",
-    "koa-jwt": "^3.6.0",
+    "prettier": "^1.19.1",
     "resolve-cwd": "^3.0.0",
-    "supertest": "^4.0.2",
     "ts-jest": "^25.0.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.0.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test"
+      "pre-commit": [
+        "npm run lint",
+        "npm test"
+      ]
     }
   }
 }

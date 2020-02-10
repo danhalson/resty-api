@@ -1,6 +1,6 @@
 import request from 'supertest';
 import {server, app, db, cleanup} from '.';
-import {jsonError} from '../utils/errors';
+import {jsonError} from '../src/utils/errors';
 
 const users = [
     {

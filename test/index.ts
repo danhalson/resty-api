@@ -1,7 +1,7 @@
 import {Server} from 'http';
 import {unlinkSync} from 'fs';
-import runServer from '../server';
-import {Config} from '../types/main';
+import runServer from '../src/server';
+import {Config} from '../src/types';
 
 export const config: Config = {
     port: 3001,
@@ -11,7 +11,7 @@ export const config: Config = {
 /**
  * Shuts down the server and deletes the db file
  */
-export const cleanup = (_server: Server) => {
+export const cleanup = (_server: Server): void => {
     _server.close();
     unlinkSync(config.dbFile);
 };

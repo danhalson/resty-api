@@ -2,7 +2,7 @@ import Router from 'koa-router';
 import {jsonError} from '../utils/errors';
 import uniqid from 'uniqid';
 import {hashPassword} from '../utils/security';
-import User from '../types/User';
+import {User} from '../types';
 import {checkMissingFields} from '../utils/validation';
 import * as R from 'ramda';
 

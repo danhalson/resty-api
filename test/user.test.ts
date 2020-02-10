@@ -1,14 +1,14 @@
 import request from 'supertest';
 import {server, app, db, cleanup} from '.';
-import {jsonError} from '../utils/errors';
-import {checkPassword} from '../utils/security';
-import User from '../types/User';
+import {jsonError} from '../src/utils/errors';
+import {checkPassword} from '../src/utils/security';
+import {User} from '../src/types';
 import * as R from 'ramda';
 
 /**
  * Prep the db for tests
  */
-const prepareDb = (data: User[]) => db.set('users', data).write();
+const prepareDb = (data: User[]): void => db.set('users', data).write();
 
 /**
  * This will be fired before any nested beforeEach
@@ -171,13 +171,11 @@ describe('Deleting a user', () => {
             password: "TheTester",
         };
         const response = await request(app.callback()).post('/auth').send(expected);
-        expect(response.status).toBe(200);
-
         jwt = response.body.token;
-        expect(jwt).not.toBeUndefined();
     });
 
     it("errors deleting a missing user", async () => {
+        expect(jwt).toBeDefined();
         const id = 'nonsense';
         const response = await request(app.callback())
             .delete(`/users/${id}`)
@@ -187,6 +185,7 @@ describe('Deleting a user', () => {
     });
 
     it("prevents users from deleting a user other than themselves", async () => {
+        expect(jwt).toBeDefined();
         const response = await request(app.callback())
             .delete(`/users/${users[0].id}`)
             .set('Authorization', `Bearer ${jwt}`);
@@ -195,6 +194,7 @@ describe('Deleting a user', () => {
     });
 
     it("deletes a user successfully", async () => {
+        expect(jwt).toBeDefined();
         const authenticatedResponse = await request(app.callback())
             .delete(`/users/${users[1].id}`)
             .set('Authorization', `Bearer ${jwt}`);

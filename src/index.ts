@@ -1,5 +1,5 @@
 import runServer from './server';
-import {Config} from './types/main';
+import {Config} from './types';
 
 const config: Config = {
     port: Number(process.env.PORT) || 3000,

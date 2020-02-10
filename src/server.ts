@@ -1,11 +1,9 @@
 import runApp from './app';
 import FileSync from 'lowdb/adapters/FileSync';
 import low from 'lowdb';
+import {AppInstances, Config, Schema} from './types';
 
-import Schema from './types/Schema';
-import {Config} from './types/main';
-
-const runServer = ({port, dbFile}: Config) => {
+const runServer = ({port, dbFile}: Config): AppInstances => {
     // Setup lowdb
     const adapter = new FileSync<Schema>(dbFile);
     const db = low(adapter);
