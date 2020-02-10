@@ -2,3 +2,4 @@ node_modules/
 .vscode/
 coverage/
 secret.key
+db_users.json
